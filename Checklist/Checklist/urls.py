@@ -19,5 +19,7 @@ from Usuario import views
 
 urlpatterns = [
 	url(r'^admin/', admin.site.urls),
-    url(r'^$', views.cadastro, name='cadastro'),
+	url(r'^$', views.index, name = 'index'),
+    url(r'^cadastro/$', views.cadastro, name = 'cadastro'),
+
 ]

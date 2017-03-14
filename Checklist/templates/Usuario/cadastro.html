@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
-		<title>Cadastro de Usuário</title>		
-		<link rel ="SHORTCUT ICON"
-			  type="image/png"
-			  href="icon.png" />
+		<title>Cadastro de Usuario</title>		
+		<link rel ="stylesheet" href="d:/estilo.css"/>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
 		<meta charset="utf-8"/>
 	</head>
 		<body>
 			<form action="#" method="post">
-				<fieldset>
+				{% csrf_token %}
+				<ul>
+					<fieldset>
 					<fieldset class="grupo">
 						<div class="campo">
 							<label for="nome">Nome</label>
-							<input type="text" name="nome" id="nome">		
+							<input type="text" name="fname" id="fname">		
 						</div>
 						<div class="campo">
-							<label for = "snome">Sobrenome</label>
-							<input type="text" name="snome" id="snome">
+							<label for = "lname">Sobrenome</label>
+							<input type="text" name="lname" id="lname">
 						</div>
 						<div class="campo">
 							<label for="email">Email</label>
@@ -31,10 +33,13 @@
 						<label class="checkbox">
 							<input type="radio" name="avaliador" value="AVALIADOR">Avaliador
 						</label>
-					</div>
-					<button type="submit" class="botao submit">Enviar</button>
+					</div>					
 				</fieldset>
+				</ul>
+				<button type="submit" class="botao submit">Enviar</button>
 			</form>
+			<br />
+			<a href ="index">Voltar</a>
 		</body>
 
 </html>
