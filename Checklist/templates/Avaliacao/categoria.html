@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'Avaliacao:categoria' %}" class="form-signin" method="post">
+{% csrf_token %}
+<h2 class="form-signin-heading">Categoria de Questoes</h2>
+{{ form.nome}}
+{{ form.descricao }}
+
+<button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>
+</form>
+
+{% endblock %}
