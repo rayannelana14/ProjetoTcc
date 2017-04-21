@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'Avaliacao:checklist' %}" class="form-signin" method="post">
+{% csrf_token %}
+<h2 class="form-signin-heading">Checklist</h2>
+{{ form.nome}}
+{{ form.descricao}}
+{{ form.especialista}}
+{{ form.categoria}}
+<button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>
+</form>
+
+{% endblock %}
