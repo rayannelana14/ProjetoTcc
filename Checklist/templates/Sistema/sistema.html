@@ -2,7 +2,7 @@
 {% block content %}
 <form action="{% url 'Sistema:cadastroSistema' %}" class="form-signin" method="post">
 {% csrf_token %}
-<h2 class="form-signin-heading">Cadastre-se</h2>
+<h2 class="form-signin-heading">Cadastro de Sistema</h2>
 {{ form.requisitos}}
 {{ form.metas }}
 {{ form.categoria }}

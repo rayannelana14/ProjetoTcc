@@ -44,7 +44,7 @@
           </button>
           <a class="navbar-brand" href="#">Inspeção por Checklist</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+        <!--div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
             <div class="form-group">
               <input type="text" placeholder="Email" class="form-control">
@@ -74,40 +74,29 @@
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-4">
-          <h2>Cadastre-se</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="{% url 'Usuario:cadastro' %}" role="button">Cadastre-se &raquo;</a></p>
+          <!--h2>Usuário</h2>
+          <p></p-->
+          <p><a class="btn btn-default" href="{% url 'Usuario:cadastro' %}" role="button">Usuario &raquo;</a></p>
         </div>
         <div class="row">
           <div class="col-md-4">            
-            <h2>Cadastre-se</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <script type="text/javascript" src="{% static 'bootstrap/js/dropdown.js' %}"></script>
-            <div class="dropdown">
-            <p><button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sistema &raquo;<span class="caret"></span></button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <option><li><a href="{% url 'Sistema:cadastroSistema' %}">Novo Sistema</a></li></option>
-              </section>
-              <li><a href="#">Outra ação</a></li>
-              <li><a href="#">Algo mais aqui</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Link separado</a></li>
-            </ul>
-          </div>
+            <!--h2>Cadastre-se</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p-->
+            <p><a class="btn btn-default" href="{% url 'Sistema:cadastroSistema' %}" role="button">Sistema &raquo;</a></p>
         </div>
-        <div class="col-md-4">
-          <h2>Checklist</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        <!--div class="col-md-4">
+          <!--h2>Checklist</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p-->
+          <!--p><a class="btn btn-default" href="#" role="button">Checklist &raquo;</a></p>
         </div>
       </div>
     
-      <!-- Example row of columns -->
+      <!--Example row of columns -->
       <div class="row">
         <div class="col-md-4">
           <!--h2>Cadastre-se</h2>
-          <p>Para utilizar nossa ferramenta, cadastre-se. </p>
-          <p><a class="btn btn-default" href="{% url 'Usuario:cadastro' %}" role="button">Cadastre-se &raquo;</a></p-->
+          <p>Para utilizar nossa ferramenta, cadastre-se. </p-->
+          <p><a class="btn btn-default" href="{% url 'Avaliacao:checkindex' %}" role="button">Checklist &raquo;</a></p>
         </div>        
       <hr>
     
