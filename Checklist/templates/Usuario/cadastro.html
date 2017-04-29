@@ -2,22 +2,51 @@
 {% block content %}
 <form action="{% url 'Usuario:cadastro' %}" class="form-signin" method="post">
 {% csrf_token %}
-  <h2 class="form-signin-heading">Cadastre-se</h2>
-  <!--label>Nome</label-->
-  {{ form.first_name }}
-  {{ form.first_name.errors }}  
-  <!--label>Sobrenome</label-->
-  {{ form.last_name }}
-  {{ form.last_name.errors }}
-  <!--label>Email</label-->
-  {{ form.email}}
-  {{ form.email.errors }}
-  <option value="Especialista" name= "Especialista"></option>
-  <option value="Avaliador" name = "Avaliador"></option>  
-  </section>
-  {{ form.categoria }}
-  {{ form.categoria.errors }}
-  <label></label>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>
-</form>
-{% endblock %}
+
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>Cadastre-se </p>
+                <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
+                <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
+                <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+                <form name="sentMessage" id="contactForm" novalidate>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                        {{form.first_name}}
+                            <p class="help-block text-danger"></p>     
+                        </div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                        {{form.last_name}}
+                            <p class="help-block text-danger"></p>     
+                        </div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            {{ form.email}}
+                            <p class="help-block text-danger"></p>     
+                        </div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            {{ form.categoria}}
+                            <p class="help-block text-danger"></p>                        
+                        </div>
+                    </div>                    
+                    <br>
+                    <div id="success"></div>
+                    <div class="row">
+                        <div class="form-group col-xs-12">
+                            <button type="submit" class="btn btn-default">Cadastrar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+  <hr>
+
+ 
+{% endblock %} 

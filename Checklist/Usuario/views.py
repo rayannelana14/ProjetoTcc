@@ -7,7 +7,7 @@ from django.contrib import messages
 
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'base.html')
 
 def cadastro(request):
     form = UsuarioModelForm(request.POST or None)

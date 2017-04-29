@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'Usuario:cadastro' %}" class="form-signin" method="post">
+{% csrf_token %}
+  <h2 class="form-signin-heading">Cadastre-se</h2>
+  <!--label>Nome</label-->
+  {{ form.first_name }}
+    <p class="help-block text-danger"></p>
+  <!--label>Sobrenome</label-->
+  {{ form.last_name }}
+  {{ form.last_name.errors }}
+    <p class="help-block text-danger"></p>
+  <!--label>Email</label-->
+  {{ form.email}}
+  {{ form.email.errors }}
+    <p class="help-block text-danger"></p>
+  <option value="Especialista" name= "Especialista"></option>
+  <option value="Avaliador" name = "Avaliador"></option>  
+  </section>
+  {{ form.categoria }}
+  {{ form.categoria.errors }}  
+    <p class="help-block text-danger"></p>   
+  <label></label>
+     </div>
+  </div>
+  <button class="btn btn-default" type="submit">Cadastrar</button>
+</form>
+{% endblock %}

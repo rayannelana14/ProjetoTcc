@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.forms import ModelForm
 from django import forms
-from Avaliacao.models import Categoria, Questoes, Checklist
+from Avaliacao.models import Categoria, Questoes, Checklist, Avaliacao, Resposta
 from Usuario.models import Usuario
+from Sistema.models import Sistema
 from django.db.transaction import commit
 
 class CategoriaModelForm(forms.ModelForm):
@@ -42,6 +43,11 @@ class QuestaoModelForm(forms.ModelForm):
 		if commit:
 			Questao.save()
 		return Questao
+
+
+	def questao_list():		
+		return Questoes.objects.all()
+
 		
 class ChecklistModelForm(forms.ModelForm):
 	Checklist._meta.get_field('nome').blank = False
@@ -57,9 +63,7 @@ class ChecklistModelForm(forms.ModelForm):
 			'nome' : forms.TextInput(attrs={'class' : 'form-control', 'maxlength': 255, 'placeholder': 'Nome'}),
 			'descricao' : forms.TextInput(attrs={'class' : 'form-control', 'maxlength': 255, 'placeholder': 'Descrição'}),
 			'especialista' : forms.Select(attrs={'class' : 'form-control', 'maxlength': 255, 'placeholder': 'Especialista'},choices=choice),
-			'categoria' : forms.CheckboxSelectMultiple(choices=options),
-			#'categoria' : forms.RadioSelect(attrs={'class' : 'form-control', 'maxlength': 255, 'placeholder': 'Especialista'},choices=options),
-		}
+			'categoria' : forms.CheckboxSelectMultiple(choices=options),		}
 
 	def save(self, commit=True):
 		Checklist = super(ChecklistModelForm, self).save(commit=False)
@@ -67,3 +71,37 @@ class ChecklistModelForm(forms.ModelForm):
 			Checklist.save()
 		return Checklist
 
+class AvaliacaoModelForm(forms.ModelForm):
+	Avaliacao._meta.get_field('sistema').blank = False
+	Avaliacao._meta.get_field('responsavel').blank = False
+	Avaliacao._meta.get_field('plataforma').blank = False
+	Avaliacao._meta.get_field('checklist').blank = False
+	class Meta:
+		model = Avaliacao	
+		fields = ['sistema', 'responsavel', 'plataforma', 'checklist']
+		choiceSis = [(sis.pk, sis) for sis in Sistema.objects.all()]
+		choiceResp = [(resp.pk, resp) for resp in Usuario.objects.all()]
+		choiceChk = [(chk.pk, chk) for chk in Checklist.objects.all()]
+		widgets = {
+			'sistema' : forms.Select(attrs={'class' : 'form-control', 'maxlength': 255, 'placeholder': 'Sistema'},choices=choiceSis),
+			'responsavel' : forms.CheckboxSelectMultiple(choices=choiceResp),
+			'plataforma' : forms.TextInput(attrs={'class' : 'form-control', 'maxlength': 80, 'placeholder': 'Plataforma'}),
+			'checklist' : forms.Select(attrs={'class' : 'form-control', 'maxlength': 255, 'placeholder': 'Checklist'},choices=choiceChk),
+		}
+
+	def save(self, commit=True):
+		Avaliacao = super(AvaliacaoModelForm, self).save(commit=False)
+		if commit:
+			Avaliacao.save()
+		return Avaliacao
+
+
+class RespostaModelForm(forms.ModelForm):
+	Resposta._meta.get_field('resposta').blank = False
+	class Meta:
+		model = Resposta
+		fields = ['resposta']
+		choice = (('Sim', 'Sim'), ('Nao', 'Nao'), ('N/A', 'N/A'))
+		widgets = {
+			'resposta' : forms.RadioSelect(choices=choice)
+		}

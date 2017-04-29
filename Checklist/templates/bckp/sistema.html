@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'Sistema:cadastroSistema' %}" class="form-signin" method="post">
+{% csrf_token %}
+<h2 class="form-signin-heading">Cadastro de Sistema</h2>
+{{ form.requisitos}}
+{{ form.metas }}
+{{ form.categoria }}
+{{ form.nome }}
+{{ form.empresa}}
+{{ form.projeto }}
+
+ <button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>
+</form>
+
+{% endblock %}

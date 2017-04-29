@@ -17,7 +17,7 @@ class SistemaModelForm(forms.ModelForm):
         widgets = {
             'requisitos': forms.TextInput(attrs={'class':'form-control', 'maxlength': 100, 'placeholder': 'Requisitos'}),
             'metas': forms.NumberInput(attrs={'class': 'form-control', 'maxlength': 5, 'placeholder': 'Meta'}),
-            'categoria': forms.TextInput(attrs={'class': 'form-control', 'maxlength': 30, 'placeholder': 'Categoria'}),
+            'categoria': forms.TextInput(attrs={'class': 'form-control', 'maxlength': 30, 'placeholder': 'Categoria do Sistema'}),
             'nome' : forms.TextInput(attrs={'class': 'form-control', 'maxlength': 50, 'placeholder': 'Nome'}),
             'empresa': forms.TextInput(attrs={'class': 'form-control', 'maxlength': 50, 'placeholder': 'Empresa'}),
             'projeto': forms.TextInput(attrs={'class': 'form-control', 'maxlength': 50, 'placeholder': 'Projeto'}),

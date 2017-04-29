@@ -15,7 +15,7 @@ class UsuarioModelForm(forms.ModelForm):
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'maxlength': 255, 'placeholder': 'Nome'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control', 'maxlength': 255, 'placeholder': 'Sobrenome'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder' : 'email'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder' : 'Email'}),
             'categoria': forms.Select(attrs={'class': 'form-control', 'maxlength': 18, 'placeholder': 'Selecionar categoria'}),
         }
 
