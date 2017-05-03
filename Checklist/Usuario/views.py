@@ -11,15 +11,10 @@ def index(request):
 
 def cadastro(request):
     form = UsuarioModelForm(request.POST or None)
-    context = {'form':form}
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            messages.success(request, 'Usuario cadastrado com sucesso!')
-            return redirect('/cadastro')
+            return redirect('/config')
 
-    return render(request,'Usuario/cadastro.html', context)
-
-def config(request):
-	return render(request, 'manage.html')
+    return render(request,'Usuario/cadastro.html', {'form':form})
 

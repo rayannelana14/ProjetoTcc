@@ -1,15 +1,11 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from Avaliacao.models import Categoria, Questoes, Checklist, Checklist_Categoria, Avaliacao, Avaliacao_Responsavel
+from Avaliacao.models import Categoria, Questoes, Checklist, Checklist_Categoria, Avaliacao, Avaliacao_Responsavel, Resposta
 from Avaliacao.forms import CategoriaModelForm, QuestaoModelForm, ChecklistModelForm, AvaliacaoModelForm, RespostaModelForm
 from Sistema.models import Sistema
 from django.contrib import messages
 from django.views.generic import ListView
-
-
-def checkindex(request):
-    return render(request, 'checklist_index.html')
 
 def categoria(request):
 	form = CategoriaModelForm(request.POST or None)
@@ -18,7 +14,7 @@ def categoria(request):
 		if form.is_valid():
 			form.save()
 			messages.success(request, 'Categoria cadastrada')
-			return redirect('/categoria')
+			return redirect('/config')
 
 	return render(request, 'Avaliacao/categoria.html', context)
 
@@ -30,7 +26,7 @@ def questao(request):
 		if form.is_valid():	
 			form.save()
 			messages.success(request, 'Questao cadastrada')
-			return redirect('/questao')
+			return redirect('/config')
 
 	return render(request, 'Avaliacao/questao.html', {'form': form})
 
@@ -46,7 +42,7 @@ def checklist(request):
 				ChkCat = Checklist_Categoria.objects.create(categoria_id = cat.pk, checklist_id= checklist.pk)
 				ChkCat.save()
 			messages.success(request, 'Checklist cadastrado')
-		return redirect('/checklist')
+		return redirect('/config')
 	return render(request, 'Avaliacao/checklist.html', {'form': form})
 
 def avaliacao(request):
@@ -60,20 +56,40 @@ def avaliacao(request):
 				responsavel = Avaliacao_Responsavel.objects.create(avaliacao_id = avaliacao.pk, responsavel_id = resp.pk)
 				responsavel.save()
 			messages.success(request, 'Avaliação cadastrada')
-		return redirect('/avaliacao')
+		return redirect('/config')
 	return render(request, 'Avaliacao/avaliacao.html', {'form':form})
 
 
 def respCheck(request, pk):
-	avaliacao = Avaliacao.objects.filter(pk=pk)
-	checklist = Avaliacao.objects.filter(pk=pk).values('checklist_id')	
-	print(checklist)
-	questaoForm = QuestaoModelForm.questao_list()
+	avaliacao = Avaliacao.objects.get(pk=pk)
+	chk_id = avaliacao.checklist_id
+	chkcat = Checklist_Categoria.objects.filter(checklist_id=chk_id)
+	categoria = Categoria.objects.all()	
+	questaoForm = []
+	for obj in chkcat:
+		questlist = Questoes.objects.filter(Categoria_id= obj.categoria_id)
+		for questao in questlist:
+			questaoForm.append(questao)
 	respostaForm = RespostaModelForm(request.POST or None)
-	return render(request, 'Avaliacao/respCheck.html', {'form': questaoForm, 'formResp': respostaForm, 'pk': pk})
+	if request.method == 'POST':
+			if respostaForm.is_valid():
+				for questao in questaoForm:
+					resp = request.POST.get('resposta')
+					resposta = Resposta.objects.create(avaliacao_id= avaliacao.pk, checklist_id=chk_id, questao_id = questao.id, resposta=resp)
+					resposta.save()		
+			return redirect('/config')
+	return render(request, 'Avaliacao/respCheck.html', {'form': questaoForm, 'formResp': respostaForm, 'pk': pk, 'categoria':categoria})
 
 
 def avaliacao_list(request):
 	form = Avaliacao.objects.all()
 	return render(request, 'Avaliacao/avaliacao_list.html', {'form': form})
+
+
+def config(request):	
+    return render(request, 'retorno.html')
+
+def checklist_list(request):
+	return render(request, 'Avaliacao/checklist_list.html')
+
 

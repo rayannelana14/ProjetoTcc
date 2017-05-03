@@ -6,7 +6,8 @@
         <h2 class="post-title">
           Aqui uma lista de todos os sistemas cadastrados
         </h2>
-         <p class="post-meta">Deseja inserir um  <a href="{% url 'Sistema:cadastroSistema' %}">novo Sistema?</a></p>
+         <p class="post-meta">Clique no nome para consultar o relatório</p>
+         <p>Inserir um <a href="{% url 'Sistema:cadastroSistema' %}">novo Sistema?</a></p>
     </div>
     <hr>
 
@@ -14,11 +15,12 @@
  		{% for sistema in form %}
         <div class="post-preview">
  			<div class="post-preview">
-    			<h3 class="post-title">
- 				{{ sistema.nome }}
- 				</h3>
- 				<p class="post-meta"> <a href="{% url 'Sistema:cadastroSistema' %}">Editar</a></p>
- 				<p class="post-meta"><a href="{% url 'Sistema:cadastroSistema' %}">Relatorio</a></p>
+    			<h4>
+                <p class="post-title"><a href="{% url 'Sistema:cadastroSistema' %}">
+                {{ sistema.nome }}</a></p>
+ 				</h4>
+ 				<!--p class="post-meta"> <a href="{% url 'Sistema:cadastroSistema' %}">Editar</a></p-->
+ 				<!--p class="post-meta"><a href="{% url 'Sistema:cadastroSistema' %}">Relatorio</a></p-->
     	<hr>
  			</div>
  		</div>

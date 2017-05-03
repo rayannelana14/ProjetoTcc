@@ -11,8 +11,7 @@ def cadastroSistema(request):
 	if request.method == 'POST':
 		if form.is_valid():
 			form.save()
-			messages.success(request, 'Sistema Cadastrado')
-			return redirect ('/cadastroSistema')
+			return redirect('/config')
 	return render(request, 'Sistema/sistema.html', context)
 
 def sistema_list(request):

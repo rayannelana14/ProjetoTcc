@@ -43,6 +43,7 @@
                     Menu <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand" href="{% url 'Usuario:index' %}">Home</a>
+                <a class="navbar-brand" href="{% url 'Usuario:cadastro' %}">Cadastre-se</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -51,21 +52,21 @@
                     <li>
                         <a href="{% url 'Avaliacao:avaliacao_list' %}">Avaliação</a>
                     </li>
-                    <li>
+                    <!--li>
                         <a href="{% url 'Avaliacao:categoria' %}">Categoria</a>
-                    </li>
+                    </li-->
                     <li>
-                        <a href="{% url 'Avaliacao:checklist' %}">Checklist</a>
+                        <a href="{% url 'Avaliacao:checklist_list' %}">Checklist</a>
                     </li>
-                    <li>
+                    <!--li>
                         <a href="{% url 'Avaliacao:questao' %}">Questões</a>
-                    </li>
+                    </li-->
                     <li>
                         <a href="{% url 'Sistema:sistema_list' %}">Sistema</a>
                     </li>
-                    <li>
+                    <!--li>
                         <a href="{% url 'Usuario:cadastro' %}">Usuario</a>
-                    </li>
+                    </li-->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

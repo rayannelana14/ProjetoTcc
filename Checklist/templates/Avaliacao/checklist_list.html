@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'Avaliacao:avaliacao_list' %}" class="form-signin" method="post">
+{% csrf_token %}
+ <div class="post-preview">
+        <h3 class="post-title">
+          Crie aqui as Categorias
+        </h3>
+         <p>Deseja inserir uma  <a href="{% url 'Avaliacao:categoria' %}">nova Categoria?</a></p>
+    </div>
+    <hr>
+    <div class="post-preview">
+        <h3 class="post-title">
+          Crie aqui o seu Checklist
+        </h3>
+         <p>Deseja inserir um  <a href="{% url 'Avaliacao:checklist' %}">novo Checklist?</a></p>
+    </div>
+    <hr>
+    <div class="post-preview">
+        <h3 class="post-title">
+          Crie aqui as Questões
+        </h3>
+         <p>Deseja inserir uma  <a href="{% url 'Avaliacao:questao' %}">nova Questão?</a></p>
+    </div>
+    <hr>
+
+{% endblock %}

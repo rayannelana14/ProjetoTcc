@@ -6,7 +6,8 @@
         <h2 class="post-title">
           Aqui todas as avaliações de Checklist cadastradas
         </h2>
-         <p class="post-meta">Deseja inserir uma  <a href="{% url 'Avaliacao:avaliacao' %}">nova Avaliação?</a></p>
+         <p class="post-meta">Clique no nome para Avaliar</p>
+         <p>inserir uma <a href="{% url 'Avaliacao:avaliacao' %}">nova Avaliação?</a></p>
     </div>
     <hr>
 
@@ -14,11 +15,12 @@
  		{% for avaliacao in form %}
         <div class="post-preview">
  			<div class="post-preview">
-    			<h3 class="post-title">
- 				{{ avaliacao.nome }}
- 				</h3>
- 				<p class="post-meta"> <a href="{% url 'Avaliacao:avaliacao_list' %}">Editar</a></p>
- 				<p class="post-meta"><a href="{% url 'Avaliacao:respCheck' avaliacao.pk %}">Avaliar</a></p>
+    			<h4 class="post-title">
+ 				<p class="post-title"><a href="{% url 'Avaliacao:respCheck' avaliacao.pk %}">
+                {{ avaliacao.nome }}</a></p>
+ 				</h4>
+ 				<!--p class="post-meta"> <a href="{% url 'Avaliacao:avaliacao_list' %}">Editar</a></p-->
+ 				<!--p class="post-meta"><a href="{% url 'Avaliacao:respCheck' avaliacao.pk %}">Avaliar</a></p-->
     	<hr>
  			</div>
  		</div>

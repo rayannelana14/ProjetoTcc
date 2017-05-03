@@ -43,11 +43,6 @@ class QuestaoModelForm(forms.ModelForm):
 		if commit:
 			Questao.save()
 		return Questao
-
-
-	def questao_list():		
-		return Questoes.objects.all()
-
 		
 class ChecklistModelForm(forms.ModelForm):
 	Checklist._meta.get_field('nome').blank = False
@@ -78,15 +73,16 @@ class AvaliacaoModelForm(forms.ModelForm):
 	Avaliacao._meta.get_field('checklist').blank = False
 	class Meta:
 		model = Avaliacao	
-		fields = ['sistema', 'responsavel', 'plataforma', 'checklist']
+		fields = ['sistema', 'responsavel', 'plataforma', 'checklist', 'nome']
 		choiceSis = [(sis.pk, sis) for sis in Sistema.objects.all()]
-		choiceResp = [(resp.pk, resp) for resp in Usuario.objects.all()]
+		choiceResp = [(resp.pk, resp) for resp in Usuario.objects.filter(categoria='AVALIADOR')]
 		choiceChk = [(chk.pk, chk) for chk in Checklist.objects.all()]
 		widgets = {
 			'sistema' : forms.Select(attrs={'class' : 'form-control', 'maxlength': 255, 'placeholder': 'Sistema'},choices=choiceSis),
 			'responsavel' : forms.CheckboxSelectMultiple(choices=choiceResp),
 			'plataforma' : forms.TextInput(attrs={'class' : 'form-control', 'maxlength': 80, 'placeholder': 'Plataforma'}),
 			'checklist' : forms.Select(attrs={'class' : 'form-control', 'maxlength': 255, 'placeholder': 'Checklist'},choices=choiceChk),
+			'nome' : forms.TextInput(attrs={'class' : 'form-control', 'maxlength': 80, 'placeholder': 'Nome'})
 		}
 
 	def save(self, commit=True):
