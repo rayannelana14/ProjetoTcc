@@ -81,6 +81,8 @@ def respCheck(request, pk):
 	return render(request, 'Avaliacao/respCheck.html', {'form': questaoForm, 'formResp': respostaForm, 'pk': pk, 'categoria':categoria})
 
 
+
+
 def avaliacao_list(request):
 	form = Avaliacao.objects.all()
 	return render(request, 'Avaliacao/avaliacao_list.html', {'form': form})
@@ -91,5 +93,41 @@ def config(request):
 
 def checklist_list(request):
 	return render(request, 'Avaliacao/checklist_list.html')
+
+def relatorio(request, pk):
+	avalist = Avaliacao.objects.filter(sistema_id=pk)
+	questoes = []
+	sim = 0
+	nao = 0
+	total = 0
+	for avaliacao in avalist:
+		catChk = Checklist_Categoria.objects.filter(checklist_id=avaliacao.checklist_id)
+		for obj in catChk:
+			questlist = Questoes.objects.filter(Categoria_id=obj.categoria_id).order_by()
+			for questao in questlist:
+				categoria = Categoria.objects.get(pk=obj.categoria_id)
+				resposta = Resposta.objects.filter(questao_id=questao.pk)
+				for resp in resposta:
+					if resp.resposta == 'Sim':
+						sim = sim + 1
+					elif resp.resposta == 'Nao':
+						nao = nao + 1
+					total = total + 1
+			na = total - (sim + nao)
+			sim = (sim * 100)/total	
+			nao = (nao * 100)/total
+			questoes.append({'categoria': categoria.nome, 'sim': sim, 'nao': nao, 'na': na, 'avaliacao':avalist})
+			sim = nao = total = 0
+	return render(request, 'Avaliacao/relatorio.html', {'questoes':questoes, 'pk': pk})
+
+
+
+
+
+
+
+
+
+
 
 

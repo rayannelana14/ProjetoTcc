@@ -10,4 +10,5 @@ urlpatterns = [
 	url(r'^avaliacao_list/$', views.avaliacao_list, name = 'avaliacao_list'),
 	url(r'^config/$', views.config, name = 'config'),
 	url(r'^checklist_list/$', views.checklist_list, name = 'checklist_list'),
+	url(r'^relatorio/(?P<pk>[0-9]+)/$', views.relatorio, name = 'relatorio'),
 ]

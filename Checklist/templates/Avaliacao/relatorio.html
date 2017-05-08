@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'Avaliacao:relatorio' pk %}" class="form-signin" method="post">
+{% csrf_token %}
+<div class="post-preview">
+    <h3 class="post-title">
+        Relatório 
+    </h3>  
+    <hr> 
+</div>  
+	{% for questao in questoes %}
+<h4 class="post-subtitle">{{questao.categoria}}</h4>
+    	<p> Sim: {{questao.sim}}%</p>
+    	<p> Não: {{questao.nao}}% </p>
+    	<p> Não se Aplica: {{questao.na}}</p>
+    	</h5>
+    <hr>
+    	{% endfor %}
+    <!--/div-->
+</form>
+</form>
+
+{% endblock %}
